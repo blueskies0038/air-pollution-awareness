@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'core/base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+
+    <div class="main-container">
+        <section id="landing-page">
+            <h1>Protect <b>YOUR</b>self,</h1>
+            <h1>Protect <b>YOUR</b> Loved Ones,</h1>
+            <h1>Protect <b>YOUR</b> Planet,</h1>
+            <h2>Take responsibility for the air <b>YOU</b> breathe.</h2>
+        </section>
+    </div>
+    <div class="white-container">
+        <section id="about-section">
+            <div>
+                <h1>Let's Get Down to the <b>FACTS</b></h1>
+            </div>
+            <h3>What Exactly is Air Pollution?</h3>
+            <p>Air pollution occurs when harmful particles called aerosols are introduced into the atmosphere.</p>
+            <h3>But, Why Should You Care?</h3>
+            <div id="effects-section">
+                <div style="flex:0.6">
+                    <p>Take a look at what harmful substances are in the polluted air and the risks they bring along with them...</p>
+                </div>
+                <div style="flex:1; padding-left: 15px" id="accordion">
+                    {% for effect in effects %}
+                    <div class="form-group">
+                        <div class="card">
+                            <div class="card-header" id="{{effect.draft.0}}">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link btn-md btn-block" data-toggle="collapse" data-target="#collapse{{effect.draft.0}}" aria-expanded="false" aria-controls="collapse{{effect.draft.0}}">
+                                        {{effect.draft}}
+                                    </button>
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="collapse{{effect.draft.0}}" class="collapse" aria-labelledby="{{effect.draft.0}}" data-parent="#accordion">
+                            <div class="card-body">
+                                Cause: {{effect.cause}}
+                                <hr>
+                                Effect: {{effect.body}}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                Thats not all...
+            </div>
+        </section>
+    </div>
+    <div class="color-container">
+        <section id="solution-section">
+            <h1>Here's What You Can Do to Help</h1>
+            <div id="solutions-section">
+                <div id="img-container">
+                    <img src="{% static 'images/switching.gif' %}">
+                    <br>
+                    <img src="{% static 'images/industry.gif' %}">
+                </div>
+                <div style="flex:1; padding-left: 15px" id="accordion2">
+                    {% for solution in solutions %}
+                    <div class="form-group">
+                        <div class="card">
+                            <div class="card-header" id="{{solution.draft.4}}">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link btn-md btn-block" data-toggle="collapse" data-target="#collapse{{solution.draft.4}}" aria-expanded="false" aria-controls="collapse{{solution.draft.4}}">
+                                        {{solution.draft}}
+                                    </button>
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="collapse{{solution.draft.4}}" class="collapse" aria-labelledby="{{solution.draft.4}}" data-parent="#accordion2">
+                            <div class="card-body">
+                                {{solution.body}}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="white-container">
+        <section id="learn-section">
+            <h3>Articles to Learn More</h3>
+            <section id="project-section" class="row">
+                {% for article in readmores %}
+                <div class="col-lg-4 col-md-6">
+                    {% if article.url %}
+                    <a href="{{ article.url }}" target="_blank">
+                      <img src="{{ article.image.url }}" class="img-fluid mb-2">
+                    </a>
+                    {% else %}
+                    <img src="{{ article.image.url }}" class="img-fluid mb-2">
+                    {% endif %}
+                    <a href="{{ article.url }}" target="_blank">
+                        <h4>{{ article.name }}</h4>
+                    </a>
+                </div>
+                {% endfor %}
+            </section>
+        </section>
+
+    </div>
+    <div class="color-container">
+        <section id="donate-section">
+            <h2>Find Out Your Area's Air Quality</h2>
+            <form action="{% url 'info' %}" class="form-inline my-2 my-lg-0" method="POST">
+              {% csrf_token %}
+              <input class="form-control mr-sm-2" type="search" placeholder="Enter Zipcode" aria-label="Search" name="zipcode">
+              <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Look Up</button>
+            </form>
+        </section>
+    </div>
+    <footer>
+        &copy; Jenny Bao
+    </footer>
+
+
+{% endblock %}
+</body>
+</html>
