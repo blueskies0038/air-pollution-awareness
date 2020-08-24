@@ -4,7 +4,7 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Air Pollution: The Inevitable Truth</title>
 </head>
 <body>
 {% block content %}
@@ -26,8 +26,8 @@
             <p>Air pollution occurs when harmful particles called aerosols are introduced into the atmosphere.</p>
             <h3>But, Why Should You Care?</h3>
             <div id="effects-section">
-                <div style="flex:0.6">
-                    <p>Take a look at what harmful substances are in the polluted air and the risks they bring along with them...</p>
+                <div style="flex:0.6; text-align: left">
+                    <p>Take a look at some of the harmful substances that are in the polluted air and the risks they bring along with them...</p>
                 </div>
                 <div style="flex:1; padding-left: 15px" id="accordion">
                     {% for effect in effects %}
@@ -52,8 +52,10 @@
                     {% endfor %}
                 </div>
             </div>
+            <h3>My Personal Take</h3>
             <div>
-                Thats not all...
+                <p>{{opinions.0.body|truncatechars:419}}</p>
+                <a href="{% url 'detail' %}"><button class="btn btn-primary">Read Full Piece</button></a>
             </div>
         </section>
     </div>
@@ -64,7 +66,8 @@
                 <div id="img-container">
                     <img src="{% static 'images/switching.gif' %}">
                     <br>
-                    <img src="{% static 'images/industry.gif' %}">
+                    <img src="{% static 'images/industry.gif' %}" id="industry-pic" class="hidden-content">
+                    <br>
                 </div>
                 <div style="flex:1; padding-left: 15px" id="accordion2">
                     {% for solution in solutions %}
@@ -99,9 +102,9 @@
                     <a href="{{ article.url }}" target="_blank">
                       <img src="{{ article.image.url }}" class="img-fluid mb-2">
                     </a>
-                    {% else %}
-                    <img src="{{ article.image.url }}" class="img-fluid mb-2">
-                    {% endif %}
+                        {% else %}
+                        <img src="{{ article.image.url }}" class="img-fluid mb-2">
+                        {% endif %}
                     <a href="{{ article.url }}" target="_blank">
                         <h4>{{ article.name }}</h4>
                     </a>
@@ -112,8 +115,8 @@
 
     </div>
     <div class="color-container">
-        <section id="donate-section">
-            <h2>Find Out Your Area's Air Quality</h2>
+        <section id="search-section">
+            <h2>Check Your Area's Air Quality</h2>
             <form action="{% url 'info' %}" class="form-inline my-2 my-lg-0" method="POST">
               {% csrf_token %}
               <input class="form-control mr-sm-2" type="search" placeholder="Enter Zipcode" aria-label="Search" name="zipcode">
@@ -122,10 +125,17 @@
         </section>
     </div>
     <footer>
+        <a class="nav-link" target="_blank" href="{% static 'images/air_pollution_sources.pdf' %}">SOURCES</a>
         &copy; Jenny Bao
     </footer>
 
-
+    <script type="text/javascript">
+        var collapse = document.getElementById('t')
+        collapse.addEventListener('click', function(){
+            document.getElementById('industry-pic').classList.remove("hidden-content");
+            document.getElementById('industry-pic').classList.add("img-transition");
+        })
+    </script>
 {% endblock %}
 </body>
 </html>

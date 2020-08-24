@@ -18,7 +18,7 @@ class Solutions(models.Model):
         return self.draft
 
 
-class Info(models.Model):
+class Opinion(models.Model):
     draft = models.CharField(max_length=30)
     body = models.TextField()
 
