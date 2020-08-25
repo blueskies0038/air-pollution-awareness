@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'u9m(pt^+9nr501*@pj#bvx^fq$s+wi$@aua=g+l(otgtj$ve0y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['airpollutionawareness.pythonanywhere.com']
 
 
 # Application definition
