@@ -9,7 +9,7 @@
 <body>
 {% block content %}
 
-    <div class="main-container">
+    <div class="main-container" style="background-image: url('{% static 'core/pollution.gif' %}');">
         <section id="landing-page">
             <h1>Protect <b>YOUR</b>self,</h1>
             <h1>Protect <b>YOUR</b> Loved Ones,</h1>
@@ -64,9 +64,9 @@
             <h1>Here's What You Can Do to Help</h1>
             <div id="solutions-section">
                 <div id="img-container">
-                    <img src="{% static 'images/switching.gif' %}">
+                    <img src="{% static 'core/switching.gif' %}">
                     <br>
-                    <img src="{% static 'images/industry.gif' %}" id="industry-pic" class="hidden-content">
+                    <img src="{% static 'core/industry.gif' %}" id="industry-pic" class="hidden-content">
                     <br>
                 </div>
                 <div style="flex:1; padding-left: 15px" id="accordion2">
@@ -125,7 +125,7 @@
         </section>
     </div>
     <footer>
-        <a class="nav-link" target="_blank" href="{% static 'images/air_pollution_sources.pdf' %}">SOURCES</a>
+        <a class="nav-link" target="_blank" href="{% static 'core/air_pollution_sources.pdf' %}">SOURCES</a>
         &copy; Jenny Bao
     </footer>
 
